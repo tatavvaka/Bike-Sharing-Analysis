@@ -1,7 +1,7 @@
 # Bike Sharing: Analisis Pola Penyewaan 2011–2012
 
 Proyek analisis data Capital Bikeshare menggunakan dataset yang disediakan Dicoding.
-**Status: checkpoint tahap 5 dari paket tahap 1–5.** Dashboard, analisis lanjutan, deployment, dan ZIP submission akhir belum selesai.
+**Status: tahap 1–6 telah terisi.** Analisis lanjutan sudah ditambahkan. Dashboard, deployment, dan ZIP submission akhir masih dikerjakan pada tahap berikutnya.
 
 ## Tujuan
 
@@ -48,8 +48,24 @@ Dokumentasi asli disimpan di data/Readme.txt mulai tahap 2.
 
 ## Status pemeriksaan
 
-- Tahap yang sudah terisi dalam checkpoint ini: 1 sampai 5.
+- Tahap yang sudah terisi dalam checkpoint ini: 1 sampai 6.
 - Riwayat commit GitHub terbentuk setelah pemilik menjalankan, memeriksa, dan mengunggah tiap tahap.
-- Analisis lanjutan tanpa machine learning: belum dikerjakan.
+- Analisis lanjutan: manual grouping waktu dan binning harian dengan acuan 2011, termasuk pemeriksaan sensitivitas.
 - Dashboard lokal dan Streamlit Cloud: belum dikerjakan.
 - Submission final: belum diajukan.
+
+## Analisis lanjutan tahap 6
+
+1. Lima kelompok waktu memakai batas 00, 06, 10, 16, 20, dan 24. Rata-rata per jam digunakan untuk membandingkan interval berbeda panjang.
+2. Tingkat penyewaan harian memakai kuartil 2011: rendah <= 2.132, sedang > 2.132 sampai 4.586, dan tinggi > 4.586.
+3. Batas yang sama diterapkan pada 2012. Proporsi hari tinggi berubah dari 24,93% menjadi 72,13%.
+4. Dua pasangan kuantil pembanding memeriksa kestabilan arah hasil.
+
+Penjelasan: [docs/advanced_analysis.md](docs/advanced_analysis.md).
+Catatan tahap: [docs/progress_tahap6.md](docs/progress_tahap6.md).
+Tabel dan validasi: outputs/advanced/. Grafik tambahan: outputs/figures/03_time_block_demand.png dan 04_daily_demand_levels.png.
+Data dengan kategori: data/processed/day_segmented.csv dan hour_segmented.csv. Berkas jam hanya berisi subset 655 hari lengkap untuk analisis ini.
+
+Sel terakhir analisis lanjutan membuat hasil_tahap6.zip di runtime untuk memudahkan pengunduhan. Notebook harus diunduh terpisah. ZIP sementara tersebut tidak perlu diunggah ke repository.
+
+Dependensi tahap 6 tetap pandas, NumPy, dan Matplotlib; zipfile adalah bagian pustaka standar Python.

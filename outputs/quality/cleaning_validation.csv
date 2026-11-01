@@ -1,0 +1,10 @@
+pemeriksaan,lulus
+Jumlah hari sumber dipertahankan,True
+Jumlah jam sumber dipertahankan,True
+Tanggal sudah datetime,True
+Timestamp jam unik,True
+Kolom inti analisis harian lengkap,True
+Kolom inti analisis jam lengkap,True
+Subset jam selalu 24 catatan per tanggal,True
+Jumlah penyewaan tidak negatif,True
+Total penyewaan mentah dipertahankan,True

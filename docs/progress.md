@@ -20,6 +20,12 @@ Gathering menghasilkan 731 baris harian dan 17.379 baris jam. Assessing mencatat
 
 Pesan commit: `feat: load data and document quality issues`
 
+## Tahap 4
+
+Tanggal dikonversi; catatan sumber dipertahankan; coverage dan kelembapan diberi penanda. Analisis utama per jam dibatasi pada 655 hari lengkap. Pemeriksaan cleaning lulus dan CSV hasil disimpan.
+
+Pesan commit: `feat: clean data and validate results`
+
 ## Langkah berikutnya
 
 Lanjutkan checkpoint berikutnya secara berurutan. Setelah tahap 5: analisis lanjutan, dashboard lokal, deployment, serta audit seluruh persyaratan submission.

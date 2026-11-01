@@ -1,0 +1,3 @@
+dataset,baris,nilai_kosong,baris_duplikat,tipe_dteday,kelembapan_nol,cnt_tidak_sesuai
+day.csv,731,0,0,object,1,0
+hour.csv,17379,0,0,object,22,0

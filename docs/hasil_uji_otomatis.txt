@@ -1,0 +1,16 @@
+test_01_default_dashboard_matches_notebook (test_dashboard.DashboardTests.test_01_default_dashboard_matches_notebook) ... ok
+test_02_hourly_and_advanced_values_match_stage6 (test_dashboard.DashboardTests.test_02_hourly_and_advanced_values_match_stage6) ... ok
+test_03_workday_filter_changes_totals (test_dashboard.DashboardTests.test_03_workday_filter_changes_totals) ... ok
+test_04_single_year_has_no_false_yoy (test_dashboard.DashboardTests.test_04_single_year_has_no_false_yoy) ... ok
+test_05_invalid_date_range (test_dashboard.DashboardTests.test_05_invalid_date_range) ... ok
+test_06_no_day_type_selected (test_dashboard.DashboardTests.test_06_no_day_type_selected) ... ok
+test_07_empty_filter_combination (test_dashboard.DashboardTests.test_07_empty_filter_combination) ... ok
+test_08_partial_hour_day_switches_safely (test_dashboard.DashboardTests.test_08_partial_hour_day_switches_safely) ... ok
+test_09_reset_filters (test_dashboard.DashboardTests.test_09_reset_filters) ... ok
+test_10_partial_month_not_compared_as_full_month (test_dashboard.DashboardTests.test_10_partial_month_not_compared_as_full_month) ... ok
+test_11_download_csv_matches_filter (test_dashboard.DashboardTests.test_11_download_csv_matches_filter) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 18.335s
+
+OK

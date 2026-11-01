@@ -1,58 +1,96 @@
 # Bike Sharing: Analisis Pola Penyewaan 2011–2012
 
 Proyek analisis data Capital Bikeshare menggunakan dataset yang disediakan Dicoding.
-**Status: tahap 1–6 telah terisi.** Analisis lanjutan sudah ditambahkan. Dashboard, deployment, dan ZIP submission akhir masih dikerjakan pada tahap berikutnya.
 
-## Tujuan
+**Status:** analisis tahap 1–6 telah terisi. Dashboard tahap 7 tersedia dan lulus 11 tes otomatis.
+Pemeriksaan browser pada Windows dicatat pada checklist pengujian. Deployment dan audit submission
+akhir dilanjutkan pada tahap 8.
 
-Mengidentifikasi jam sibuk menurut jenis hari dan membandingkan rata-rata penyewaan harian setiap bulan pada 2011 dan 2012 untuk mendukung simulasi perencanaan layanan.
+## Tujuan dan pertanyaan bisnis
+
+1. Selama 1 Januari 2011–31 Desember 2012, tiga jam mana yang memiliki rata-rata jumlah penyewaan
+   tertinggi pada hari kerja dan nonkerja, untuk menentukan prioritas jadwal kesiapan layanan?
+   Perbandingan utama menggunakan tanggal dengan 24 catatan jam lengkap.
+2. Berapa perubahan rata-rata jumlah penyewaan per hari pada setiap bulan tahun 2012 dibandingkan
+   bulan yang sama pada 2011, dan bulan mana yang perlu diprioritaskan dalam perencanaan kapasitas
+   berdasarkan besarnya penyewaan tercatat dan pertumbuhannya?
 
 ## Isi proyek
 
 | Lokasi | Isi |
 |---|---|
-| notebook.ipynb | Notebook berdasarkan template Dicoding |
-| data/ | CSV sumber; mulai tahap 2 |
-| data/processed/ | Hasil cleaning; mulai tahap 4 |
-| outputs/quality/ | Bukti assessing dan validasi; mulai tahap 3 |
-| outputs/tables/ | Tabel hasil analisis; mulai tahap 5 |
-| outputs/figures/ | Grafik hasil analisis; mulai tahap 5 |
-| docs/progress.md | Catatan pekerjaan per tahap |
-| requirements.txt | Dependensi notebook |
-| dashboard/ | Rencana tempat aplikasi Streamlit tahap berikutnya |
+| notebook.ipynb | Notebook berdasarkan template Dicoding, analisis tahap 1–6 |
+| data/day.csv, data/hour.csv | Dataset sumber |
+| data/Readme.txt | Dokumentasi dataset asli |
+| data/processed/ | Hasil cleaning dan kategori analisis |
+| outputs/ | Bukti kualitas, tabel, validasi, dan grafik notebook |
+| dashboard/dashboard.py | Aplikasi Streamlit |
+| dashboard/analysis.py | Perhitungan dashboard |
+| .streamlit/config.toml | Konfigurasi tampilan |
+| tests/test_dashboard.py | Pengujian dashboard |
+| docs/ | Catatan proses dan hasil pengujian |
+| requirements.txt | Dependensi notebook dan dashboard |
 
 ## Menjalankan notebook di Google Colab
 
 1. Buka https://colab.research.google.com/ dan pilih File > Upload notebook.
-2. Unggah notebook.ipynb dan lengkapi nama, email, serta ID Dicoding pada sel pertama.
-3. Mulai tahap 3, unggah day.csv dan hour.csv dari folder data/ ke panel Files Colab.
+2. Unggah notebook.ipynb dan periksa identitas pada sel pertama.
+3. Unggah day.csv dan hour.csv dari folder data/ ke panel Files Colab.
 4. Pilih Runtime > Run all, kemudian periksa output tiap bagian.
-5. Unduh notebook dari File > Download > Download .ipynb. Simpan dengan nama notebook.ipynb.
-6. Simpan versi yang telah dijalankan tersebut ke repository bersama berkas tahap yang terkait.
+5. Unduh melalui File > Download > Download .ipynb dan simpan sebagai notebook.ipynb.
 
-Notebook mencari CSV di data/ jika dijalankan dari folder proyek, atau di direktori kerja jika CSV diunggah langsung ke Colab.
+Notebook mencari CSV di data/ dari folder proyek atau di direktori kerja Colab.
 
-## Lingkungan Python lokal (opsional pada tahap ini)
+## Menjalankan dashboard pada Windows
 
-Gunakan Python 3.10 atau lebih baru. Instal dependensi dengan `python -m pip install -r requirements.txt`.
-Buka notebook memakai Jupyter atau VS Code yang telah mendukung notebook. Panduan utama tahap 1–5 menggunakan Colab.
+Gunakan Python 3.12. Buka Command Prompt dari folder utama proyek yang berisi requirements.txt.
+Jalankan satu per satu:
 
-## Dashboard
+```bat
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m unittest discover -s tests -v
+.venv\Scripts\python.exe -m streamlit run dashboard/dashboard.py
+```
 
-Aplikasi Streamlit dan petunjuk menjalankannya akan ditambahkan pada tahap berikutnya. Folder dashboard saat ini berisi catatan rencana.
+Buka alamat Local URL yang muncul, biasanya http://localhost:8501.
+Biarkan terminal menyala saat dashboard digunakan. Tekan Ctrl+C untuk berhenti.
+Untuk penggunaan berikutnya cukup jalankan perintah Streamlit terakhir.
+
+Jika Python 3.12 belum tersedia, pasang Python install manager dari https://www.python.org/downloads/windows/,
+lalu jalankan `pymanager install 3.12`. Jika launcher lama menghalangi perintah `py`, gunakan
+`pymanager exec -V:3.12 -m venv .venv` untuk membuat lingkungan.
+
+Versi yang diuji: Python 3.12.14, Streamlit 1.66.1, pandas 2.2.3, NumPy 2.3.5, Matplotlib 3.10.8.
+Pemasangan awal memerlukan internet. Aplikasi kemudian membaca dataset lokal.
+
+## Menggunakan dashboard
+
+- Pilih tanggal awal dan akhir pada sidebar.
+- Pilih Kerja, Nonkerja, atau keduanya; Nonkerja mencakup akhir pekan dan hari libur.
+- Cakupan grafik per jam dapat menggunakan Hari lengkap (24 jam) atau Semua jam tercatat.
+- Gunakan empat tab: Jam sibuk, Tren bulanan, Analisis lanjutan, dan Data & metode.
+- Tabel dan interpretasi mengikuti filter. Unduh CSV melalui tombol yang tersedia.
+- Tombol Reset filter mengembalikan pengaturan awal.
+
+Pada filter awal: 3.292.679 penyewaan, 4.504,35 penyewaan/hari, 731 tanggal, dan 655 tanggal
+untuk analisis jam lengkap. Metrik total memakai day.csv; data harian dan per jam tidak dijumlahkan.
+
+YoY hanya dihitung untuk pasangan bulan lengkap dengan jenis hari yang sama. Batas kategori
+penyewaan tetap memakai seluruh tahun 2011, meskipun filter diubah. Analisis bersifat deskriptif;
+jumlah penyewaan bukan jumlah pelanggan unik, stok armada, atau permintaan yang tidak terlayani.
+
+## Pemeriksaan dan dokumentasi
+
+- Hasil 11 tes otomatis serta checklist browser Windows: [docs/pengujian_dashboard.md](docs/pengujian_dashboard.md).
+- Catatan dashboard: [docs/progress_tahap7.md](docs/progress_tahap7.md).
+- Commit tahap 7: `feat: build interactive dashboard`.
+- Deployment dan URL publik: tahap 8, belum dicantumkan sebagai hasil selesai.
 
 ## Sumber
 
-Dataset penugasan Dicoding: Bike Sharing Dataset, Fanaee-T (2013). https://doi.org/10.24432/C5W894.
-Dokumentasi asli disimpan di data/Readme.txt mulai tahap 2.
-
-## Status pemeriksaan
-
-- Tahap yang sudah terisi dalam checkpoint ini: 1 sampai 6.
-- Riwayat commit GitHub terbentuk setelah pemilik menjalankan, memeriksa, dan mengunggah tiap tahap.
-- Analisis lanjutan: manual grouping waktu dan binning harian dengan acuan 2011, termasuk pemeriksaan sensitivitas.
-- Dashboard lokal dan Streamlit Cloud: belum dikerjakan.
-- Submission final: belum diajukan.
+Dataset penugasan Dicoding: Bike Sharing Dataset, Fanaee-T (2013).
+https://doi.org/10.24432/C5W894. Dokumentasi asli: data/Readme.txt.
 
 ## Analisis lanjutan tahap 6
 
@@ -68,4 +106,4 @@ Data dengan kategori: data/processed/day_segmented.csv dan hour_segmented.csv. B
 
 Sel terakhir analisis lanjutan membuat hasil_tahap6.zip di runtime untuk memudahkan pengunduhan. Notebook harus diunduh terpisah. ZIP sementara tersebut tidak perlu diunggah ke repository.
 
-Dependensi tahap 6 tetap pandas, NumPy, dan Matplotlib; zipfile adalah bagian pustaka standar Python.
+Tahap 6 memakai pandas, NumPy, dan Matplotlib; zipfile adalah bagian pustaka standar Python. Tahap 7 menambahkan Streamlit.

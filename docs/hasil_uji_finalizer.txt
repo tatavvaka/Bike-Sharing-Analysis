@@ -1,0 +1,10 @@
+test_01_audit_recognizes_executed_notebook_and_source_data (__main__.FinalizerTests.test_01_audit_recognizes_executed_notebook_and_source_data) ... ok
+test_02_invalid_url_does_not_change_project (__main__.FinalizerTests.test_02_invalid_url_does_not_change_project) ... ok
+test_03_prepare_preserves_outputs_and_previous_progress (__main__.FinalizerTests.test_03_prepare_preserves_outputs_and_previous_progress) ... ok
+test_04_zip_contains_runtime_files_and_excludes_environment (__main__.FinalizerTests.test_04_zip_contains_runtime_files_and_excludes_environment) ... ok
+test_05_incomplete_notebook_and_missing_module_are_rejected (__main__.FinalizerTests.test_05_incomplete_notebook_and_missing_module_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.496s
+
+OK

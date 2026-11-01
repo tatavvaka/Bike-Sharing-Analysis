@@ -2,9 +2,8 @@
 
 Proyek analisis data Capital Bikeshare menggunakan dataset yang disediakan Dicoding.
 
-**Status:** analisis tahap 1–6 telah terisi. Dashboard tahap 7 tersedia dan lulus 11 tes otomatis.
-Pemeriksaan browser pada Windows dicatat pada checklist pengujian. Deployment dan audit submission
-akhir dilanjutkan pada tahap 8.
+**Status:** analisis dan dashboard tersedia. URL aplikasi dicatat pada bagian Dashboard online.
+Bukti pemeriksaan akhir dicatat pada docs/checklist_final.md dan docs/audit_otomatis.md.
 
 ## Tujuan dan pertanyaan bisnis
 
@@ -85,7 +84,7 @@ jumlah penyewaan bukan jumlah pelanggan unik, stok armada, atau permintaan yang 
 - Hasil 11 tes otomatis serta checklist browser Windows: [docs/pengujian_dashboard.md](docs/pengujian_dashboard.md).
 - Catatan dashboard: [docs/progress_tahap7.md](docs/progress_tahap7.md).
 - Commit tahap 7: `feat: build interactive dashboard`.
-- Deployment dan URL publik: tahap 8, belum dicantumkan sebagai hasil selesai.
+- URL aplikasi: lihat bagian Dashboard online dan url.txt.
 
 ## Sumber
 
@@ -107,3 +106,28 @@ Data dengan kategori: data/processed/day_segmented.csv dan hour_segmented.csv. B
 Sel terakhir analisis lanjutan membuat hasil_tahap6.zip di runtime untuk memudahkan pengunduhan. Notebook harus diunduh terpisah. ZIP sementara tersebut tidak perlu diunggah ke repository.
 
 Tahap 6 memakai pandas, NumPy, dan Matplotlib; zipfile adalah bagian pustaka standar Python. Tahap 7 menambahkan Streamlit.
+
+<!-- DEPLOYMENT_TAHAP8:BEGIN -->
+## Dashboard online
+
+[Buka dashboard Bike Sharing](https://tatavvaka-bike-sharing.streamlit.app/)
+
+Repository: https://github.com/tatavvaka/Bike-Sharing-Analysis.
+Entrypoint: `dashboard/dashboard.py`. Gunakan Python 3.12 di Advanced settings saat deployment.
+Aplikasi membaca `data/day.csv` dan `data/hour.csv`; modul `dashboard/analysis.py` ikut diperlukan.
+
+URL dicatat pada 2026-11-02 04:51 WIB. Pemeriksaan akses publik, filter, grafik, dan unduhan dilakukan
+melalui browser dan dicatat pada [checklist akhir](docs/checklist_final.md).
+Hasil pemeriksaan berkas: [audit otomatis](docs/audit_otomatis.md).
+
+Sesudah dokumentasi di-commit, buat ZIP dengan:
+
+```bat
+.venv\Scripts\python.exe scripts/finalize_submission.py zip
+```
+
+Hasil: `dist/Submission_Bike_Sharing_Tata_Ivanka.zip`.
+ZIP memuat dataset, notebook beserta output, kode dashboard, requirements, README,
+URL aplikasi, serta dokumentasi proyek. Paket tahap 7/8 adalah bahan kerja dan tidak
+digunakan sebagai pengganti ZIP submission ini.
+<!-- DEPLOYMENT_TAHAP8:END -->

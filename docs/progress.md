@@ -35,3 +35,19 @@ Pesan commit: `feat: add exploratory analysis and charts`
 ## Langkah berikutnya
 
 Lanjutkan checkpoint berikutnya secara berurutan. Setelah tahap 5: analisis lanjutan, dashboard lokal, deployment, serta audit seluruh persyaratan submission.
+
+<!-- TAHAP8:BEGIN -->
+## Tahap 8 — deployment dan persiapan submission
+
+- Pencatatan: 2026-11-02 04:51 WIB.
+- URL yang dicatat pemilik: https://tatavvaka-bike-sharing.streamlit.app/
+- Perubahan: README, url.txt, status penutup notebook, pemeriksaan berkas, dan alat pengemasan ZIP.
+- Hasil pemeriksaan otomatis berkas: lihat audit_otomatis.md.
+- Hasil pemeriksaan manual browser: lihat checklist_final.md; isi sesuai hasil nyata.
+- Kendala dan penyelesaian: dicatat oleh pemilik pada checklist_final.md bila ada.
+- Pesan commit tahap ini: `docs: finalize deployment and submission`.
+- Tindak lanjut: commit/push berkas, buat ZIP, periksa isi ZIP, lalu unggah ke Dicoding.
+
+Catatan ini mencatat persiapan berkas. Riwayat commit/push dan penerimaan submission
+dibuktikan melalui GitHub serta status pengiriman pada Dicoding.
+<!-- TAHAP8:END -->

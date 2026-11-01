@@ -1,7 +1,7 @@
 # Bike Sharing: Analisis Pola Penyewaan 2011–2012
 
 Proyek analisis data Capital Bikeshare menggunakan dataset yang disediakan Dicoding.
-**Status: checkpoint tahap 1 dari paket tahap 1–5.** Dashboard, analisis lanjutan, deployment, dan ZIP submission akhir belum selesai.
+**Status: checkpoint tahap 2 dari paket tahap 1–5.** Dashboard, analisis lanjutan, deployment, dan ZIP submission akhir belum selesai.
 
 ## Tujuan
 
@@ -48,7 +48,7 @@ Dokumentasi asli disimpan di data/Readme.txt mulai tahap 2.
 
 ## Status pemeriksaan
 
-- Tahap yang sudah terisi dalam checkpoint ini: 1 sampai 1.
+- Tahap yang sudah terisi dalam checkpoint ini: 1 sampai 2.
 - Riwayat commit GitHub terbentuk setelah pemilik menjalankan, memeriksa, dan mengunggah tiap tahap.
 - Analisis lanjutan tanpa machine learning: belum dikerjakan.
 - Dashboard lokal dan Streamlit Cloud: belum dikerjakan.

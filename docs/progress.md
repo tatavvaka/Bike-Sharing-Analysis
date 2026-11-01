@@ -26,6 +26,12 @@ Tanggal dikonversi; catatan sumber dipertahankan; coverage dan kelembapan diberi
 
 Pesan commit: `feat: clean data and validate results`
 
+## Tahap 5
+
+EDA, dua grafik, tabel analisis, kesimpulan, dan rekomendasi awal dibuat. Peringkat jam puncak dibandingkan dengan semua jam tersedia. Analisis lanjutan dan dashboard masih dijadwalkan.
+
+Pesan commit: `feat: add exploratory analysis and charts`
+
 ## Langkah berikutnya
 
 Lanjutkan checkpoint berikutnya secara berurutan. Setelah tahap 5: analisis lanjutan, dashboard lokal, deployment, serta audit seluruh persyaratan submission.

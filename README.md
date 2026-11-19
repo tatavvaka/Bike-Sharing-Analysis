@@ -1,133 +1,199 @@
-# Bike Sharing: Analisis Pola Penyewaan 2011–2012
+![Bike Sharing Analysis banner](assets/banner-bike-sharing.svg)
 
-Proyek analisis data Capital Bikeshare menggunakan dataset yang disediakan Dicoding.
+# 🚲 Bike Sharing Analysis
 
-**Status:** analisis dan dashboard tersedia. URL aplikasi dicatat pada bagian Dashboard online.
-Bukti pemeriksaan akhir dicatat pada docs/checklist_final.md dan docs/audit_otomatis.md.
+**Exploring Capital Bikeshare rental patterns with Python, EDA, and Streamlit.**
 
-## Tujuan dan pertanyaan bisnis
+<p align="left">
+  <a href="https://tatavvaka-bike-sharing.streamlit.app/"><img src="https://img.shields.io/badge/Live%20Dashboard-Open-2F918A?style=flat-square&logo=streamlit&logoColor=white" alt="Live Dashboard"></a>
+  <a href="notebook.ipynb"><img src="https://img.shields.io/badge/Jupyter-Notebook-EA8A35?style=flat-square&logo=jupyter&logoColor=white" alt="Jupyter Notebook"></a>
+</p>
 
-1. Selama 1 Januari 2011–31 Desember 2012, tiga jam mana yang memiliki rata-rata jumlah penyewaan
-   tertinggi pada hari kerja dan nonkerja, untuk menentukan prioritas jadwal kesiapan layanan?
-   Perbandingan utama menggunakan tanggal dengan 24 catatan jam lengkap.
-2. Berapa perubahan rata-rata jumlah penyewaan per hari pada setiap bulan tahun 2012 dibandingkan
-   bulan yang sama pada 2011, dan bulan mana yang perlu diprioritaskan dalam perencanaan kapasitas
-   berdasarkan besarnya penyewaan tercatat dan pertumbuhannya?
+![Python](https://img.shields.io/badge/Python-1F4E79?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-287C83?logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-356B83?logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-527D91)
+![Streamlit](https://img.shields.io/badge/Streamlit-2A9D8F?logo=streamlit&logoColor=white)
 
-## Isi proyek
+---
 
-| Lokasi | Isi |
+## 📌 About This Project
+
+Kapan sepeda paling banyak disewa dalam sehari? Apakah pola penyewaan saat working days berbeda dengan non-working days?
+
+Project ini merupakan bagian dari personal data analytics portfolio-ku. Menggunakan **Capital Bikeshare Dataset periode 2011–2012**, aku mengeksplorasi pola penyewaan sepeda, membandingkan rental activity berdasarkan jenis hari, dan melihat perubahan demand dari bulan ke bulan.
+
+Prosesnya mencakup data preparation, exploratory data analysis (EDA), data visualization, hingga pengembangan interactive dashboard menggunakan Streamlit. Fokusnya bukan sekadar menghasilkan grafik, tetapi memahami pola di balik data dan menyampaikan insight dengan konteks yang tepat.
+
+## 🎯 Project Objectives
+
+Ada dua pertanyaan utama yang menjadi fokus analisis:
+
+1. **Peak Rental Hours** — Pada jam berapa rata-rata penyewaan sepeda mencapai nilai tertinggi saat working days dan non-working days?
+2. **Monthly Rental Trends** — Bagaimana perubahan rata-rata penyewaan harian pada setiap bulan tahun 2012 dibandingkan dengan bulan yang sama pada 2011?
+
+## 🗂️ Dataset Overview
+
+Dataset yang digunakan adalah **Bike Sharing Dataset** dari sistem Capital Bikeshare, dengan periode pengamatan Januari 2011 hingga Desember 2012.
+
+| Dataset | Description | Records |
+|---|---|---:|
+| `day.csv` | Daily rental records | 731 |
+| `hour.csv` | Hourly rental records | 17,379 |
+| `Readme.txt` | Original dataset documentation | — |
+
+**Dataset highlights**
+
+- Total recorded rentals: **3,292,679**
+- Average daily rentals: **4,504.35**
+- Observation period: **January 2011 – December 2012**
+- Complete hourly records: **655 days**
+
+**Data quality note:** Dari 17,544 hourly calendar slots yang seharusnya tersedia, terdapat 165 slot yang tidak tercatat pada 76 tanggal. Missing records tidak langsung dianggap sebagai zero rentals. Untuk menjaga konsistensi perbandingan pola per jam, analisis utama menggunakan 655 hari dengan 24 observasi lengkap.
+
+## ⚙️ Analysis Workflow
+
+| Stage | What I Did |
 |---|---|
-| notebook.ipynb | Notebook berdasarkan template Dicoding, analisis tahap 1–6 |
-| data/day.csv, data/hour.csv | Dataset sumber |
-| data/Readme.txt | Dokumentasi dataset asli |
-| data/processed/ | Hasil cleaning dan kategori analisis |
-| outputs/ | Bukti kualitas, tabel, validasi, dan grafik notebook |
-| dashboard/dashboard.py | Aplikasi Streamlit |
-| dashboard/analysis.py | Perhitungan dashboard |
-| .streamlit/config.toml | Konfigurasi tampilan |
-| tests/test_dashboard.py | Pengujian dashboard |
-| docs/ | Catatan proses dan hasil pengujian |
-| requirements.txt | Dependensi notebook dan dashboard |
+| Data Gathering | Membaca daily dan hourly datasets |
+| Data Assessing | Memeriksa data types, missing records, duplicates, dan konsistensi data |
+| Data Cleaning | Menyiapkan kolom tanggal, meninjau nilai yang perlu diperiksa, dan membuat analytical features |
+| EDA | Mengeksplorasi hourly rental patterns dan monthly trends |
+| Data Visualization | Menyajikan hasil melalui grafik dan perbandingan |
+| Advanced Analysis | Menggunakan manual grouping, binning, dan sensitivity checks |
+| Dashboard Development | Mengembangkan interactive dashboard dengan Streamlit |
 
-## Menjalankan notebook di Google Colab
+## 📊 Key Findings
 
-1. Buka https://colab.research.google.com/ dan pilih File > Upload notebook.
-2. Unggah notebook.ipynb dan periksa identitas pada sel pertama.
-3. Unggah day.csv dan hour.csv dari folder data/ ke panel Files Colab.
-4. Pilih Runtime > Run all, kemudian periksa output tiap bagian.
-5. Unduh melalui File > Download > Download .ipynb dan simpan sebagai notebook.ipynb.
+### 01. Peak Rental Hours
 
-Notebook mencari CSV di data/ dari folder proyek atau di direktori kerja Colab.
+Terdapat perbedaan pola waktu puncak penyewaan antara working days dan non-working days.
 
-## Menjalankan dashboard pada Windows
+**Working Days**
 
-Gunakan Python 3.12. Buka Command Prompt dari folder utama proyek yang berisi requirements.txt.
-Jalankan satu per satu:
+| Rank | Hour | Average Rentals |
+|---|---:|---:|
+| 🥇 | 17:00 | 559.66 |
+| 🥈 | 18:00 | 524.11 |
+| 🥉 | 08:00 | 504.05 |
 
-```bat
-py -3.12 -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
-.venv\Scripts\python.exe -m unittest discover -s tests -v
-.venv\Scripts\python.exe -m streamlit run dashboard/dashboard.py
-```
+**Non-working Days**
 
-Buka alamat Local URL yang muncul, biasanya http://localhost:8501.
-Biarkan terminal menyala saat dashboard digunakan. Tekan Ctrl+C untuk berhenti.
-Untuk penggunaan berikutnya cukup jalankan perintah Streamlit terakhir.
+| Rank | Hour | Average Rentals |
+|---|---:|---:|
+| 🥇 | 13:00 | 390.83 |
+| 🥈 | 12:00 | 385.07 |
+| 🥉 | 14:00 | 381.65 |
 
-Jika Python 3.12 belum tersedia, pasang Python install manager dari https://www.python.org/downloads/windows/,
-lalu jalankan `pymanager install 3.12`. Jika launcher lama menghalangi perintah `py`, gunakan
-`pymanager exec -V:3.12 -m venv .venv` untuk membuat lingkungan.
+**What I found:** Pada working days, rental activity lebih tinggi pada pagi dan sore hari, terutama sekitar waktu berangkat dan pulang kerja. Sementara itu, non-working days menunjukkan aktivitas penyewaan yang lebih tinggi pada siang hari.
 
-Versi yang diuji: Python 3.12.14, Streamlit 1.66.1, pandas 2.2.3, NumPy 2.3.5, Matplotlib 3.10.8.
-Pemasangan awal memerlukan internet. Aplikasi kemudian membaca dataset lokal.
+### 02. Monthly Rental Trends
 
-## Menggunakan dashboard
+Rata-rata penyewaan harian pada 2012 meningkat di setiap bulan jika dibandingkan dengan bulan yang sama pada 2011.
 
-- Pilih tanggal awal dan akhir pada sidebar.
-- Pilih Kerja, Nonkerja, atau keduanya; Nonkerja mencakup akhir pekan dan hari libur.
-- Cakupan grafik per jam dapat menggunakan Hari lengkap (24 jam) atau Semua jam tercatat.
-- Gunakan empat tab: Jam sibuk, Tren bulanan, Analisis lanjutan, dan Data & metode.
-- Tabel dan interpretasi mengikuti filter. Unduh CSV melalui tombol yang tersedia.
-- Tombol Reset filter mengembalikan pengaturan awal.
+Beberapa highlights:
 
-Pada filter awal: 3.292.679 penyewaan, 4.504,35 penyewaan/hari, 731 tanggal, dan 655 tanggal
-untuk analisis jam lengkap. Metrik total memakai day.csv; data harian dan per jam tidak dijumlahkan.
+- **March:** mencatat year-over-year growth terbesar, yaitu **157.44%**, atau bertambah sekitar **3,252.58 rentals per day**.
+- **September:** memiliki rata-rata penyewaan harian tertinggi pada 2012, yaitu **7,285.77 rentals per day**.
 
-YoY hanya dihitung untuk pasangan bulan lengkap dengan jenis hari yang sama. Batas kategori
-penyewaan tetap memakai seluruh tahun 2011, meskipun filter diubah. Analisis bersifat deskriptif;
-jumlah penyewaan bukan jumlah pelanggan unik, stok armada, atau permintaan yang tidak terlayani.
+Interesting takeaway: bulan dengan pertumbuhan tertinggi tidak selalu menjadi bulan dengan rental volume tertinggi.
 
-## Pemeriksaan dan dokumentasi
+### 03. Advanced Analysis
 
-- Hasil 11 tes otomatis serta checklist browser Windows: [docs/pengujian_dashboard.md](docs/pengujian_dashboard.md).
-- Catatan dashboard: [docs/progress_tahap7.md](docs/progress_tahap7.md).
-- Commit tahap 7: `feat: build interactive dashboard`.
-- URL aplikasi: lihat bagian Dashboard online dan url.txt.
+Untuk memperdalam hasil EDA, aku juga melakukan grouping dan binning agar pola penyewaan bisa dilihat dari sudut pandang yang berbeda.
 
-## Sumber
+- Mengelompokkan catatan per jam ke dalam lima time blocks.
+- Mengategorikan daily rental levels menggunakan quartile tahun 2011.
+- Membandingkan proporsi high-demand days pada 2011 dan 2012.
+- Melakukan sensitivity checks menggunakan alternatif quantile thresholds.
 
-Dataset penugasan Dicoding: Bike Sharing Dataset, Fanaee-T (2013).
-https://doi.org/10.24432/C5W894. Dokumentasi asli: data/Readme.txt.
+Pada analisis time blocks, periode **16:00–19:00** memiliki rata-rata tertinggi pada working days, yaitu **441.98 rentals per hour**. Untuk non-working days, periode **10:00–15:00** memiliki rata-rata tertinggi, yaitu **355.93 rentals per hour**.
 
-## Analisis lanjutan tahap 6
+Dengan threshold referensi yang sama dari 2011, proporsi high-demand days meningkat dari **24.93% pada 2011 menjadi 72.13% pada 2012**. Kategori ini merupakan pengelompokan relatif terhadap data 2011, bukan standar kapasitas operasional.
 
-1. Lima kelompok waktu memakai batas 00, 06, 10, 16, 20, dan 24. Rata-rata per jam digunakan untuk membandingkan interval berbeda panjang.
-2. Tingkat penyewaan harian memakai kuartil 2011: rendah <= 2.132, sedang > 2.132 sampai 4.586, dan tinggi > 4.586.
-3. Batas yang sama diterapkan pada 2012. Proporsi hari tinggi berubah dari 24,93% menjadi 72,13%.
-4. Dua pasangan kuantil pembanding memeriksa kestabilan arah hasil.
+## 📈 Data Visualization
 
-Penjelasan: [docs/advanced_analysis.md](docs/advanced_analysis.md).
-Catatan tahap: [docs/progress_tahap6.md](docs/progress_tahap6.md).
-Tabel dan validasi: outputs/advanced/. Grafik tambahan: outputs/figures/03_time_block_demand.png dan 04_daily_demand_levels.png.
-Data dengan kategori: data/processed/day_segmented.csv dan hour_segmented.csv. Berkas jam hanya berisi subset 655 hari lengkap untuk analisis ini.
+Visualisasi berikut merupakan hasil analisis yang tersimpan di repository.
 
-Sel terakhir analisis lanjutan membuat hasil_tahap6.zip di runtime untuk memudahkan pengunduhan. Notebook harus diunduh terpisah. ZIP sementara tersebut tidak perlu diunggah ke repository.
+**Hourly Rental Patterns**
 
-Tahap 6 memakai pandas, NumPy, dan Matplotlib; zipfile adalah bagian pustaka standar Python. Tahap 7 menambahkan Streamlit.
+![Hourly Rental Patterns](outputs/figures/01_pola_jam_sibuk.png)
 
-<!-- DEPLOYMENT_TAHAP8:BEGIN -->
-## Dashboard online
+**Monthly Rental Comparison**
 
-[Buka dashboard Bike Sharing](https://tatavvaka-bike-sharing.streamlit.app/)
+![Monthly Rental Comparison](outputs/figures/02_rerata_harian_bulanan.png)
 
-Repository: https://github.com/tatavvaka/Bike-Sharing-Analysis.
-Entrypoint: `dashboard/dashboard.py`. Gunakan Python 3.12 di Advanced settings saat deployment.
-Aplikasi membaca `data/day.csv` dan `data/hour.csv`; modul `dashboard/analysis.py` ikut diperlukan.
+**Time Block Analysis**
 
-URL dicatat pada 2026-11-02 04:51 WIB. Pemeriksaan akses publik, filter, grafik, dan unduhan dilakukan
-melalui browser dan dicatat pada [checklist akhir](docs/checklist_final.md).
-Hasil pemeriksaan berkas: [audit otomatis](docs/audit_otomatis.md).
+![Time Block Analysis](outputs/figures/03_time_block_demand.png)
 
-Sesudah dokumentasi di-commit, buat ZIP dengan:
+**Daily Rental Demand Levels**
 
-```bat
-.venv\Scripts\python.exe scripts/finalize_submission.py zip
-```
+![Daily Rental Demand Levels](outputs/figures/04_daily_demand_levels.png)
 
-Hasil: `dist/Submission_Bike_Sharing_Tata_Ivanka.zip`.
-ZIP memuat dataset, notebook beserta output, kode dashboard, requirements, README,
-URL aplikasi, serta dokumentasi proyek. Paket tahap 7/8 adalah bahan kerja dan tidak
-digunakan sebagai pengganti ZIP submission ini.
-<!-- DEPLOYMENT_TAHAP8:END -->
+## 🌐 Interactive Dashboard
+
+Sebagai pelengkap analisis, aku mengembangkan dashboard interaktif menggunakan **Streamlit**. Dashboard ini menyajikan hasil analisis dalam tampilan yang lebih visual dan memungkinkan eksplorasi berdasarkan filter yang tersedia.
+
+**Dashboard highlights:**
+
+- 📅 Date range selection.
+- 🗓️ Working days dan non-working days comparison.
+- ⏰ Hourly rental analysis.
+- 📊 Monthly rental trends.
+- 🔎 Advanced demand analysis.
+- 📥 Downloadable analytical tables in CSV format.
+
+<p align="center">
+  <a href="https://tatavvaka-bike-sharing.streamlit.app/"><strong>🌐 Explore the Live Dashboard</strong></a>
+</p>
+
+## 🛠️ Tools & Technologies
+
+| Technology | Role |
+|---|---|
+| Python | Main programming language |
+| Pandas | Data manipulation and cleaning |
+| NumPy | Numerical computation |
+| Matplotlib | Data visualization |
+| Streamlit | Interactive dashboard |
+| Jupyter Notebook | Exploratory data analysis |
+| Git & GitHub | Version control and project documentation |
+
+## 📁 Project Contents
+
+| File / Folder | Description |
+|---|---|
+| `notebook.ipynb` | Main exploratory data analysis |
+| `dashboard/` | Streamlit dashboard and analysis modules |
+| `data/` | Original and processed datasets |
+| `outputs/figures/` | Analysis visualizations |
+| `outputs/tables/` | Analytical summary tables |
+| `outputs/advanced/` | Advanced analysis results |
+| `outputs/quality/` | Data quality assessment |
+| `docs/` | Project documentation and findings |
+| `tests/` | Dashboard tests |
+| `requirements.txt` | Project dependencies |
+
+## 🔎 Limitations
+
+Beberapa hal yang perlu diperhatikan saat membaca hasil analisis:
+
+- Dataset hanya mencakup periode 2011–2012, sehingga tidak merepresentasikan kondisi bike-sharing saat ini.
+- Analisis bersifat descriptive dan tidak membuktikan hubungan sebab-akibat.
+- Rental counts tidak sama dengan jumlah unique customers.
+- Dataset tidak menyediakan informasi lengkap mengenai actual fleet availability maupun unmet demand.
+- Penyebab missing hourly records belum dapat dipastikan.
+
+## 📚 References
+
+1. Fanaee-T, H. (2013). *Bike Sharing Dataset*. UCI Machine Learning Repository. [https://doi.org/10.24432/C5W894](https://doi.org/10.24432/C5W894)
+2. Dicoding Indonesia — *Belajar Analisis Data dengan Python*.
+3. [Pandas Documentation](https://pandas.pydata.org/docs/)
+4. [Streamlit Documentation](https://docs.streamlit.io/)
+
+---
+
+<p align="center">
+  Made with curiosity and a little love for data. 🤍
+</p>

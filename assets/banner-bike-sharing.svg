@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+<title id="title">Bike Sharing Analysis</title>
+<desc id="desc">Minimal navy and teal banner for a bike sharing data analytics portfolio project.</desc>
+<rect width="1200" height="320" rx="22" fill="#F2F7F8"/>
+<circle cx="1060" cy="64" r="150" fill="#DDEBED"/>
+<circle cx="1140" cy="275" r="120" fill="#E6F0F0"/>
+<path d="M720 258 C790 230 830 245 875 205 S960 160 1005 174 S1080 115 1160 92" fill="none" stroke="#3B918C" stroke-width="5" stroke-linecap="round"/>
+<path d="M720 258 C790 230 830 245 875 205 S960 160 1005 174 S1080 115 1160 92 L1160 320 L720 320 Z" fill="#B8D9D5" opacity=".35"/>
+<g fill="#FFFFFF" stroke="#2F7777" stroke-width="5">
+<circle cx="858" cy="210" r="39"/><circle cx="1018" cy="210" r="39"/>
+</g>
+<g fill="none" stroke="#2F7777" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M858 210 L905 145 L953 210 L858 210 L886 169 L935 169 L1018 210"/>
+<path d="M905 145 L892 145 M935 169 L947 146 M947 146 L967 146"/>
+</g>
+<rect x="70" y="66" width="8" height="185" rx="4" fill="#2F918A"/>
+<text x="108" y="124" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="4" fill="#397C7B">PERSONAL DATA PORTFOLIO</text>
+<text x="108" y="183" font-family="Inter, Arial, sans-serif" font-size="43" font-weight="750" fill="#173C4A">BIKE SHARING ANALYSIS</text>
+<text x="110" y="222" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="500" letter-spacing="1.2" fill="#52717B">RENTAL PATTERNS · EDA · STREAMLIT DASHBOARD</text>
+<text x="110" y="267" font-family="Inter, Arial, sans-serif" font-size="15" fill="#6C858C">Capital Bikeshare historical data · 2011–2012</text>
+</svg>
